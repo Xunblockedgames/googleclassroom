@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
 }
 
 body {
@@ -36,20 +36,20 @@ body {
     margin-left: 4px;
 }
 
-.profile-circle {
+/* Guest / Logged Out Avatar Profile */
+.profile-circle.guest {
     width: 32px;
     height: 32px;
-    background: #1a73e8;
+    background: #5f6368;
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    cursor: pointer;
+    font-size: 14px;
 }
 
-/* Button & Icon Styles */
 .icon-btn {
     background: none;
     border: none;
@@ -64,94 +64,168 @@ body {
     background-color: #f1f3f4;
 }
 
-.icon-btn-white {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-/* Grid & Cards */
+/* Empty State / Dashboard Layout */
 .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 64px);
     padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
-.class-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+.empty-state {
+    text-align: center;
+    max-width: 400px;
 }
 
-.class-card {
-    background: white;
-    border: 1px solid #dadce0;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-    cursor: pointer;
+.empty-img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 16px;
 }
 
-.class-card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.empty-state h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #202124;
 }
 
-.card-header {
-    padding: 16px;
-    height: 100px;
+.empty-state p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 24px;
+}
+
+.action-btn {
+    background-color: #1a73e8;
     color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3);
 }
 
-.math-bg { background-color: #1967d2; }
-.history-bg { background-color: #137333; }
+.action-btn:hover {
+    background-color: #1557b0;
+}
 
-.header-top {
+/* Modal Popup Window Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(32, 33, 36, 0.6);
+    display: none; /* Controlled by JavaScript */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 8px;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24);
+    overflow: hidden;
+}
+
+.modal-header {
     display: flex;
     justify-content: space-between;
-}
-
-.class-title {
-    font-size: 22px;
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.class-title:hover {
-    text-decoration: underline;
-}
-
-.class-teacher {
-    font-size: 14px;
-    margin-top: 4px;
-}
-
-.card-body {
-    padding: 16px;
-    height: 140px;
+    align-items: center;
+    padding: 16px 24px;
     border-bottom: 1px solid #e0e0e0;
 }
 
-.due-soon {
-    font-size: 12px;
-    font-weight: bold;
-    color: #3c4043;
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #202124;
 }
 
-.assignment-link {
-    font-size: 13px;
-    margin-top: 8px;
-    color: #3c4043;
+.modal-body {
+    padding: 24px;
 }
 
-.no-work {
-    color: #70757a;
+.modal-instruction {
     font-size: 14px;
+    color: #3c4043;
+    margin-bottom: 20px;
 }
 
-.card-footer {
+.input-container {
+    position: relative;
+}
+
+#class-code-input {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+#class-code-input:focus {
+    border-color: #1a73e8;
+    border-width: 2px;
+    padding: 15px; /* Counteracts the 2px border jump */
+}
+
+.error-msg {
+    display: none;
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.modal-footer {
     display: flex;
     justify-content: flex-end;
-    padding: 8px;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: #f8f9fa;
+}
+
+.text-btn {
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #5f6368;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.text-btn:hover {
+    background-color: #f1f3f4;
+}
+
+.submit-btn {
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a73e8;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:disabled {
+    color: #bcc1c6;
+    cursor: default;
+}
+
+.submit-btn:not(:disabled):hover {
+    background-color: #e8f0fe;
 }
