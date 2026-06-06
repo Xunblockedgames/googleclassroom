@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Classroom Replica</title>
+    <title>Google Classroom - Guest</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header class="navbar">
         <div class="nav-left">
             <button class="icon-btn"><span class="material-symbols-rounded">menu</span></button>
@@ -18,57 +16,98 @@
             <span class="product-name">Classroom</span>
         </div>
         <div class="nav-right">
-            <button class="icon-btn"><span class="material-symbols-rounded">add</span></button>
+            <button class="icon-btn" id="join-btn" title="Create or join a class">
+                <span class="material-symbols-rounded">add</span>
+            </button>
             <button class="icon-btn"><span class="material-symbols-rounded">apps</span></button>
-            <div class="profile-circle">J</div>
+            <div class="profile-circle guest">?</div>
         </div>
     </header>
 
-    <div class="main-container">
-        <!-- Main Feed -->
-        <main class="content">
-            <div class="class-grid">
-                
-                <!-- Class Card 1 -->
-                <div class="class-card">
-                    <div class="card-header math-bg">
-                        <div class="header-top">
-                            <a href="#" class="class-title">Advanced Calculus - Period 4</a>
-                            <button class="icon-btn-white"><span class="material-symbols-rounded">more_vert</span></button>
-                        </div>
-                        <p class="class-teacher">Mr. Henderson</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="due-soon">Due tomorrow</p>
-                        <p class="assignment-link">Problem Set #12: Integrals</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="icon-btn"><span class="material-symbols-rounded">folder</span></button>
-                        <button class="icon-btn"><span class="material-symbols-rounded">assignment_ind</span></button>
-                    </div>
-                </div>
+    <main class="main-container">
+        <div class="empty-state">
+            <img src="https://www.gstatic.com/classroom/web/modules/home/no_classes.png" alt="No classes" class="empty-img">
+            <h2>Don't see your existing classes?</h2>
+            <p>Try signing in with another account or join a class using a code.</p>
+            <button class="action-btn" id="secondary-join-btn">Join class</button>
+        </div>
+    </main>
 
-                <!-- Class Card 2 -->
-                <div class="class-card">
-                    <div class="card-header history-bg">
-                        <div class="header-top">
-                            <a href="#" class="class-title">Modern World History</a>
-                            <button class="icon-btn-white"><span class="material-symbols-rounded">more_vert</span></button>
-                        </div>
-                        <p class="class-teacher">Ms. Robinson</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="no-work">No work due soon</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="icon-btn"><span class="material-symbols-rounded">folder</span></button>
-                        <button class="icon-btn"><span class="material-symbols-rounded">assignment_ind</span></button>
-                    </div>
-                </div>
-
+    <div class="modal-overlay" id="join-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Join class</h3>
+                <button class="icon-btn" id="close-modal"><span class="material-symbols-rounded">close</span></button>
             </div>
-        </main>
+            <div class="modal-body">
+                <p class="modal-instruction">Ask your teacher for the class code, then enter it here.</p>
+                <div class="input-container">
+                    <input type="text" id="class-code-input" placeholder="Class code" autocomplete="off">
+                    <span class="error-msg" id="error-message">Invalid code. Try again.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="text-btn" id="cancel-btn">Cancel</button>
+                <button class="submit-btn" id="submit-code-btn" disabled>Join</button>
+            </div>
+        </div>
     </div>
 
+    <script>
+        const joinBtn = document.getElementById('join-btn');
+        const secondaryJoinBtn = document.getElementById('secondary-join-btn');
+        const modal = document.getElementById('join-modal');
+        const closeModal = document.getElementById('close-modal');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const submitBtn = document.getElementById('submit-code-btn');
+        const codeInput = document.getElementById('class-code-input');
+        const errorMsg = document.getElementById('error-message');
+
+        // Open Modal
+        function openModal() {
+            modal.style.display = 'flex';
+            codeInput.focus();
+        }
+
+        // Close Modal
+        function hideModal() {
+            modal.style.display = 'none';
+            codeInput.value = '';
+            errorMsg.style.display = 'none';
+            submitBtn.disabled = true;
+        }
+
+        joinBtn.addEventListener('click', openModal);
+        secondaryJoinBtn.addEventListener('click', openModal);
+        closeModal.addEventListener('click', hideModal);
+        cancelBtn.addEventListener('click', hideModal);
+
+        // Enable/Disable Join button based on typing
+        codeInput.addEventListener('input', () => {
+            if (codeInput.value.trim().length > 0) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        });
+
+        // Code verification logic
+        submitBtn.addEventListener('click', () => {
+            if (codeInput.value.trim() === "1111") {
+                window.location.href = "home.html";
+            } else {
+                errorMsg.style.display = 'block';
+                codeInput.value = '';
+                submitBtn.disabled = true;
+            }
+        });
+
+        // Allow pressing Enter key to submit
+        codeInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !submitBtn.disabled) {
+                submitBtn.click();
+            }
+        });
+    </script>
 </body>
 </html>
