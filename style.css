@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #3c4043;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.product-name {
+    font-size: 22px;
+    color: #5f6368;
+    margin-left: 4px;
+}
+
+.profile-circle {
+    width: 32px;
+    height: 32px;
+    background: #1a73e8;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Button & Icon Styles */
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #5f6368;
+    display: flex;
+}
+
+.icon-btn:hover {
+    background-color: #f1f3f4;
+}
+
+.icon-btn-white {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Grid & Cards */
+.main-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.class-card {
+    background: white;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.class-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-header {
+    padding: 16px;
+    height: 100px;
+    color: white;
+}
+
+.math-bg { background-color: #1967d2; }
+.history-bg { background-color: #137333; }
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.class-title {
+    font-size: 22px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.class-title:hover {
+    text-decoration: underline;
+}
+
+.class-teacher {
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.card-body {
+    padding: 16px;
+    height: 140px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.due-soon {
+    font-size: 12px;
+    font-weight: bold;
+    color: #3c4043;
+}
+
+.assignment-link {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #3c4043;
+}
+
+.no-work {
+    color: #70757a;
+    font-size: 14px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+}
